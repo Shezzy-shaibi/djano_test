@@ -1,5 +1,5 @@
 
-{% extends 'basic.html' %}
+{% extends 'shop/basic.html' %}
 
 {% block title %}
 Form
@@ -9,7 +9,7 @@ Form
 
 
 
-<form method="post">
+<form method="get">
 
 {% csrf_token %}
 
@@ -68,6 +68,9 @@ Form
   <a href="/submit" class="btn btn-primary">
   sign in
     </a>
+<!--  <button class="btn btn-primary">-->
+<!--    Submit-->
+<!--  </button>-->
 </form>
 
 {% endblock %}
