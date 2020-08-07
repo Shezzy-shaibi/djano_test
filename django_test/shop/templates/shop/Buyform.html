@@ -4,8 +4,34 @@
 Buyform
 {% endblock %}
 
+{% block css %}
+<style>
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+</style>
+
+{%endblock%}
+
+
 {% block body %}
 {% load static %}
+
+
 <section class="text-gray-700 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -53,22 +79,47 @@ Buyform
         </div>
         <p class="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
         <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-          <div class="flex">
-            <span class="mr-3">Color</span>
-            <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
-          </div>
+          
           <div class="flex ml-6 items-center">
-            <span class="mr-3">Size</span>
-            <div class="relative">
-              <select class="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-indigo-500 text-base pl-3 pr-10">
-                <option>United Kingdom</option>
-                <option>
-                  USA
-                </option>
-                <option>Caneda</option>
-              </select>
+          
+               
+             
+            <div class="relative ml-10">
+            
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Chose Country
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Submenu action</a></li>
+        <li><a class="dropdown-item" href="#">Another submenu action</a></li>
+
+
+        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
+            <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+  </ul>
+</li>
+
+
+
               <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4" viewBox="0 0 24 24">
                   <path d="M6 9l6 6 6-6"></path>
@@ -91,4 +142,26 @@ Buyform
   </div>
 </section>
 
-{% endblock %}
+
+{% endblock%}
+
+{% block js %}
+<script>
+$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+  if (!$(this).next().hasClass('show')) {
+    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+  }
+  var $subMenu = $(this).next(".dropdown-menu");
+  $subMenu.toggleClass('show');
+
+
+  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+    $('.dropdown-submenu .show').removeClass("show");
+  });
+
+
+  return false;
+});
+
+</script>
+{% endblock%}
