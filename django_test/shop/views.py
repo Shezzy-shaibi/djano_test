@@ -1,7 +1,12 @@
 from django.shortcuts import render
+from .models import Product
+
 
 def home(request):
-    return render(request,'shop/home.html')
+
+    products = Product.objects.all()
+    parms = {'product': products}
+    return render(request,'shop/home.html',parms)
 def rate(request):
    return render(request,'shop/rate.html')
 def services(request):
